@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Microservices\\PlatformService\\PlatformService.csproj": {}
+    "E:\\Start Microservices\\Microservices\\PlatformService\\PlatformService.csproj": {}
   },
   "projects": {
-    "E:\\Microservices\\PlatformService\\PlatformService.csproj": {
+    "E:\\Start Microservices\\Microservices\\PlatformService\\PlatformService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Microservices\\PlatformService\\PlatformService.csproj",
+        "projectUniqueName": "E:\\Start Microservices\\Microservices\\PlatformService\\PlatformService.csproj",
         "projectName": "PlatformService",
-        "projectPath": "E:\\Microservices\\PlatformService\\PlatformService.csproj",
+        "projectPath": "E:\\Start Microservices\\Microservices\\PlatformService\\PlatformService.csproj",
         "packagesPath": "C:\\Users\\dogan\\.nuget\\packages\\",
-        "outputPath": "E:\\Microservices\\PlatformService\\obj\\",
+        "outputPath": "E:\\Start Microservices\\Microservices\\PlatformService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dogan\\AppData\\Roaming\\NuGet\\NuGet.Config"

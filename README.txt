@@ -16,3 +16,5 @@ this part is dependency injection
         {
             _context = context;
         }
+
+* 'in-memory' database is used for TESTING. If we restart app all data is deleted.
