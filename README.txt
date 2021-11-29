@@ -7,3 +7,12 @@ i) model is created
 ii) dbcontext (representation of db) is created
 iii) dbset is represantation of 'table' 'entity'
 iv) added dbcontext to startup 'dependency injection?'
+
+
+this part is dependency injection
+ private readonly AppDbContext _context;
+
+        public PlatformRepository(AppDbContext context) // AppDbContext is injected in Startup
+        {
+            _context = context;
+        }
