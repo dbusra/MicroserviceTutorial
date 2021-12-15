@@ -35,6 +35,7 @@ namespace PlatformService
             services.AddScoped<IPlatformRepository, PlatformRepository>(); // if somebody 'asks' IPlatformRepository we'll give them 'PlatformRepository', concrete class
 
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
