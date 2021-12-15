@@ -61,6 +61,10 @@ namespace PlatformService
             {
                 endpoints.MapControllers();
             });
+
+            // we pass IApplicationBuilder to PreparePopulation method in order for us to be able use AppDbContext,
+            // we pass AppDbContext through IApplicationBuilder
+            PrepareDb.PreparePopulation(app); 
         }
     }
 }
