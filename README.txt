@@ -34,4 +34,7 @@ we do make it via automapper.profile
 Using AutoMapper we 'map' one to another, bit it works one way, for example model -> dto mappimg does not map dto -> model 
 
 
+ControllerBase :     A base class for an MVC controller without view support.
 
+
+REST Spec: Anytime an entity/resource is created you should return back that entity with http code 201. ( --> CreatePlatform returns back PlatformReadDto)
