@@ -38,3 +38,15 @@ ControllerBase :     A base class for an MVC controller without view support.
 
 
 REST Spec: Anytime an entity/resource is created you should return back that entity with http code 201. ( --> CreatePlatform returns back PlatformReadDto)
+
+--> INTRODUCTION TO DOCKER CONTAINERS [https://docs.docker.com/samples/dotnetcore/]
+
+*** How the docker engine builds an image?
+    Ans: It takes the docker file and then actually uses an empty container to start layering up and building up your resulting image
+
+    i) Image is the blueprint/template (OOP: a class) ; Container (OOP: an instance of that class) 
+       Image is used to create a Container
+    ii) BUT ALSO An Image is part of the build process 
+What docker does is it will take an empty container and build inside that at each step and ultimately you'll end up with an image 
+
+Each step in the docker file a container will be used to perform that step
