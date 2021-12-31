@@ -1,0 +1,98 @@
+What is Docker?
+A platform for building, running and shipping applications in a consistent manner. If the application works on development machine
+it can run and function the same way on other machines.
+
+[
+    It works on my machine but does not in production environment! Docker solves this problem
+    Reasons:
+        i) one or more files missing
+        ii) software version mismatch
+        iii) different configuration settings  
+]
+
+With Docker we can 'package' our application and run it on any machine. So all dependencies, configuration etc are going to be
+'packaged' and now we can use that package on any environment.
+And one thing is worth to mention is if someone joins the team he/she has not spend time to setting up a new machine 
+to run the application
+
+Dependencies inside an isolated environment is called Container
+
+One more benefit of Docker is when we are done with an application (container) and we do not want to work on it anymore
+we can remove the application and all its dependencies we can do it in one go. Without docker it is hard to remove because we are 
+afraid that we would mess up with some application.
+
+Virtual Machines (VMs) vs Containers    (How are containers  different from VMs?)
+
+Container
+An isolated environment for running an application.
+Allow running multiple apps in isolation.
+Lightweight (They do not need a full OS)
+Use OS of the host (They share the host.)
+Starts quickly (OS is started on the host) 
+Needs less hardware resources
+
+Virtual Machine
+An abstraction of a machine (physical hardware). We can run several VMs on a real physical machine
+
+A HYPERVISOR is software we use to create and manage virtual machines
+Some of the hypervisors: VirtualBox, VMWare (both are cross-platform) Hyper-V (windows only)
+
+Problems with VMs
+
+Each VM needs a full-blown(tam gelismis?) OS.
+Slow to start (like starting the computer) 
+Resource intensive (VMs take an actual physical hardware resources like cpu memory etc.
+ -> we have a limit in terms of the number of VMs we can run on a machine.)
+
+ Docker Architecture
+
+ Docker uses client-server architecture. 
+ Client component talks to the server component using a Restful API. (Server Component: Docker Engine)
+ Server component (Docker Engine) takes care of building and running docker containers. 
+
+ Technically a container is just a special kind of process like other processes running on the computer. All containers
+ share the OS of the host MORE ACCURATELY containers share the Kernel of the Host. Kernel is Core of an OS. Kernel manages all
+ applications and hardware resources. Every OS has its own kernel and that kernels have different APIs, that's why we cannot run
+ a windows application on a Linux machine. Because under the hood the application needs to talk the kernel of the OS.
+
+ We can run linux containers on a linux machine. But we cannot run windows containers on a linux machine.
+ However we can run windows containers and linux containers on a windows machine. Because Windows 10 has both 
+ linux kernel and windows kernel. Windows containers share windows kernel, linux containers share linux kernel.
+
+[
+Installing WSL2 & Docker Desktop
+
+Docker runs on linux
+
+Docker Linux platformda calisan bir container platformu [Cikarim: Bu nedenle WSL2 ile ubuntu kurduk] Docker Linux OS e gerek duyuyor.
+
+Docker Desktop kucuk bir VM i ayaga kaldirip Dockeri buraya kuruyor. Docker o sistemde (sistem : Docker Desktop) calisan VM de calisiyordu.
+
+WSL2 destegiyle beraber Windows 10 a linux kernel gomuldugu icin (bir nevi VM gomdugu icin) Docker kendi kurulumunu degistirdi ve WSL2 instance in icine kurulabilir hale geldi
+
+Windows/Mac e Docker kurmak istedigimizde kuracagimiz uygulama Docker Desktop. 
+]
+
+Development Workflow
+
+We add Dockerfile to the application [We 'dockerize' the application] A dockerfile includes instructions that docker uses to package up
+this application into an image. Image contains everything the application needs to run.
+
+Docker uses this image to start a container. Application gets loaded inside a container and  this is how the application runs locally
+in the development machine. 
+
+We tell to Docker to run the application inside a container/an isolated environment.
+We push the image which is on the development machine to Docker Hub and we 'pull' it on to production/test machine. Now these environments
+have the same image with development environment. We just say to Docker 'create a container using this image /run it.'
+
+Docker Hub is a storage for images that is created by us/someone.
+
+docker run -- every time when we run it, it creates a container, docker goes to docker hub and pulls down that image, ex: sql server image etc.
+docker start [container_id] -- starts an existing container 
+docker stop [container_id] -- stops a container
+docker ps -- shows running containers
+docker push [docker_hub_id/image_name] -- pushes the image to Docker Hub
+
+Images are built up in what called 'layers'. When we upload/pUsh our image to Docker Hub second time, it will be quicker than the first one. 
+Because Docker will upload changes/'effect to the layer'
+

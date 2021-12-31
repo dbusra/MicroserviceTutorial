@@ -16,7 +16,7 @@ RUN dotnet restore
 COPY . ./
 
 # Release : configuration flag ; 
-# output of the publish is placed in folder 'out'
+# output of the publish (compiled project) is placed in folder 'out'
 RUN dotnet publish -c Release -o out
 
 # generate runtime image
