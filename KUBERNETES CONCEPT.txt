@@ -39,4 +39,15 @@ Pod - a pod is used to host and run containers (one or more containers) [In our 
 Node port - (accessing containers that inside a pod) 'kubernetes service'. in test and development environment. external traffic comes into it
 and it directs to internal port and through internal port we can access the container inside the pod. ['LOAD BALANCER'] 
 
+IMPERATIVE -- COMMAND LINE
+DECLARATIVE -- CONFIG FILES ** WE ARE GOING TO  TAKE THIS APPROACH -- we are gonna write deployment folder.
 
+-- inside yaml file;
+  spec:
+    replicas: 1 -- we have destroyed the container within docker desktop 
+                   but here we tell kubernetes one service must running
+                   and kubernetes recovers the service for us 'as an orchestrator'
+
+kubectl apply -f platforms-depl.yaml : creates deployment file
+
+kubectl delete deployment [deployment_file] : delete deployment file -- kubernetes does not recover things after this state
