@@ -1,0 +1,5 @@
+scaffolding new api project
+dotnet new webapi -n [name_of_the_project]
+
+add packages [to csroj]
+dotnet add package [package_name]
