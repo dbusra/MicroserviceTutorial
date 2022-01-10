@@ -51,3 +51,19 @@ DECLARATIVE -- CONFIG FILES ** WE ARE GOING TO  TAKE THIS APPROACH -- we are gon
 kubectl apply -f platforms-depl.yaml : creates deployment file
 
 kubectl delete deployment [deployment_file] : delete deployment file -- kubernetes does not recover things after this state
+
+we can access the service on the pod with a 'node port'
+
+similarity for commands: 
+
+--> kind: Service / Deployment
+
+kubectl delete [service/deployment] etc.
+
+command line >> kubectl get services
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)       
+platformnpservice-srv   NodePort    10.96.240.23   <none>        80:31653/TCP   
+
+--> TYPE:NodePort 
+--> 80: internal port
+--> 31653: external port

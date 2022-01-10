@@ -1,0 +1,14 @@
+# platforms node port service
+apiVersion: v1
+kind: Service
+metadata: 
+  name: platformnpservice-srv # name of the service (when we work with it at the command line)
+spec:
+  type: NodePort
+  selector: 
+    app: platformservice # this node port is going to work with 'platformservice'. node port needs to know where to reach out to.
+  ports:
+    - name: platformservice
+      protocol: TCP
+      port: 80 # node port's port number
+      targetPort: 80 # service's port number that we reach to

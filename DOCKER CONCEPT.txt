@@ -91,8 +91,12 @@ docker run -- every time when we run it, it creates a container, docker goes to 
 docker start [container_id] -- starts an existing container 
 docker stop [container_id] -- stops a container
 docker ps -- shows running containers
-docker push [docker_hub_id/image_name] -- pushes the image to Docker Hub
+docker push [docker_hub_id]/[image_name] -- pushes the image to Docker Hub
 
-Images are built up in what called 'layers'. When we upload/pUsh our image to Docker Hub second time, it will be quicker than the first one. 
+docker run -p 8080:80 -d [docker_hub_id]/[image_name] 
+--> -p 8080:80 :: port mapping for access to service
+--> -d (detached mode) :: with d flag output will not placed in command line and we can use comand line
+
+Images are built up in what called 'layers'. When we upload/push our image to Docker Hub second time, it will be quicker than the first one. 
 Because Docker will upload changes/'effect to the layer'
 
