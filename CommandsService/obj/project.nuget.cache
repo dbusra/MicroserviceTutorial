@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3BTTxQegO7N2w39qTPAd8VcciuJM/bQvmkBR3NLn+yT8gLRyPUJX0ArQiQ5LtsY3KYGGgEZz0jMR5KBAdGDCXw==",
+  "dgSpecHash": "tZwBvoXPnox0OBH47M9vE4Ln4Md7eXFRNHj/oI6yBSEZu3ysc8lLynBdeW3bC2JJFfVoZ6mn5gTdLHKGMtv32A==",
   "success": true,
-  "projectFilePath": "F:\\Start Microservices\\Microservices\\CommandService\\CommandService.csproj",
+  "projectFilePath": "F:\\Start Microservices\\Microservices\\CommandsService\\CommandService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dogan\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\dogan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

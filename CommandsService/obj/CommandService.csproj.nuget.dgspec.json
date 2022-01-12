@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Start Microservices\\Microservices\\CommandService\\CommandService.csproj": {}
+    "F:\\Start Microservices\\Microservices\\CommandsService\\CommandService.csproj": {}
   },
   "projects": {
-    "F:\\Start Microservices\\Microservices\\CommandService\\CommandService.csproj": {
+    "F:\\Start Microservices\\Microservices\\CommandsService\\CommandService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Start Microservices\\Microservices\\CommandService\\CommandService.csproj",
+        "projectUniqueName": "F:\\Start Microservices\\Microservices\\CommandsService\\CommandService.csproj",
         "projectName": "CommandService",
-        "projectPath": "F:\\Start Microservices\\Microservices\\CommandService\\CommandService.csproj",
+        "projectPath": "F:\\Start Microservices\\Microservices\\CommandsService\\CommandService.csproj",
         "packagesPath": "C:\\Users\\dogan\\.nuget\\packages\\",
-        "outputPath": "F:\\Start Microservices\\Microservices\\CommandService\\obj\\",
+        "outputPath": "F:\\Start Microservices\\Microservices\\CommandsService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dogan\\AppData\\Roaming\\NuGet\\NuGet.Config"
