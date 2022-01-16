@@ -1,0 +1,64 @@
+MESSAGING (Synchronous & Asynchronous Messaging)
+
+Synchronous Messaging
+
+Request / Response Cycle: Client makes a request to an endpoint and waits for response.
+Requester will 'wait' for response
+[
+    When services are 'servicing' requests to an external clients (web application, insomnia,postman etc.) 
+    (those type of external services generally are synchronous) are synchronous
+
+    [Service to service communications are generally asynchronous. e.x Platform Service & Command Service]
+]
+
+Services 'usually' need to know about eachother. (Where is the service sitting etc.)
+[There are 'service discovery' , 'service meshes' (automatic service discovery, not necessary to know about service)]
+
+Synchronous messaging forms: http, grpc
+
+
+What if I mark http actions as 'async' ?
+
+[HtPost]
+public async Task<ActionResult<PlatformReadDto>> CreatePlatform(args)
+{
+    // code
+}
+
+Is not this piece of code async then? Does not that mak it an asynchronous messaging construct then?
+Short Answer: No.
+Long Answer: 
+    From a messaging perspective this method is still synchronous
+    The client has to wait for a response
+    async here is about the service manages its threads internally, from a client perspective anybody 
+    requesting that service still has to wait for a response.
+
+    async in this context (in c# language) means that the 'action will not wait' for a long running operation.
+    (It is not going to maintain hold of its thread while that long running operation, it will free thread,
+    it is going to return thread back to the thread pool.)
+    It will hand back it's thread to the thread pool, where it can be reused.
+    When the operation finishes it will re-acquire a thread and complete, (and respond back to the requestor)
+    So async here is about thread exhaustion - the requestor still has to wait (the call is synchronous)
+
+Asynchronous Messaging
+
+No request / response Cycle
+Requester does not wait
+Event model, e.g. publish -subscribe
+Typically used between services
+Event bus is often used (ex:RabbitMQ)
+Services do not need to know eachother, (they know about) just the bus
+(put some information to the message bus as saying, here is something that other services need to know about
+or here is some informatin i potentially need, and message bus handles rest of it(message bus sends out 'events'))
+[event driven model]
+Introduces its own range of complexities - not a magic bullet.
+
+Is not the event bus a Monolith?
+
+To some extent yes.
+Internal comms would stop working (would cease) if the message bus goes down
+Services will(should) still operate and work externally, with some caveats(if services are designed appropriately), even if they cannot talk other services 
+Should be treated as a first class citizen similar to: network, physical storage, power etc.
+Message bus should be clustered(production environment)(If the message bus goes down, it should continue to serve in some way -> clustered structure), with message persistence etc. (it should not lose messages if the cluster goes down)
+Services should implement some kind of retry policy(If the message bus does not respond some time service will retry)
+Aim for smart services, stupid pipes. (Message bus is here just for transport to get one event from one service to the other.) 
