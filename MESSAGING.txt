@@ -56,7 +56,7 @@ Introduces its own range of complexities - not a magic bullet.
 Is not the event bus a Monolith?
 
 To some extent yes.
-Internal comms would stop working (would cease) if the message bus goes down
+Internal comms(communications) would stop working (would cease) if the message bus goes down
 Services will(should) still operate and work externally, with some caveats(if services are designed appropriately), even if they cannot talk other services 
 Should be treated as a first class citizen similar to: network, physical storage, power etc.
 Message bus should be clustered(production environment)(If the message bus goes down, it should continue to serve in some way -> clustered structure), with message persistence etc. (it should not lose messages if the cluster goes down)

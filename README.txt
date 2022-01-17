@@ -50,3 +50,19 @@ REST Spec: Anytime an entity/resource is created you should return back that ent
 What docker does is it will take an empty container and build inside that at each step and ultimately you'll end up with an image 
 
 Each step in the docker file a container will be used to perform that step
+
+--
+
+we are going to create a synchronous client that will allow us to talk to our command service
+
+http client factory: it basically gives us an http client, main using of http client factory is if you are 
+making multiple requests  using http clients you should be using a factory to do that, 
+because it manages connection safety etc. you don't end up with connection exhaustion etc.
+
+with this commit we created a synchronous client that will allow us to talk to our command service
+
+i) we created an interface for http data client and it's concrete class.
+ii) we wrote a method (SendPlatformToCommand) to send platforms which is we create (-> PlatformService:CreatePlatform)
+iii) we used PlatformReadDto as an argument for SendPlatformToCommand, because we possibly need an id within CommandService.
+iv) we used http client for to send our platforms to CommandService, we set up constructor depepndency injection (HttpCommandDataClient & Startup)
+v) we put the uri for CommandService to config file so PlatformService is able to know where the CommandService sits
