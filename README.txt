@@ -55,7 +55,7 @@ Each step in the docker file a container will be used to perform that step
 
 we are going to create a synchronous client that will allow us to talk to our command service
 
-http client factory: it basically gives us an http client, main using of http client factory is if you are 
+http client factory: it basically gives us a http client, main using of http client factory is if you are 
 making multiple requests  using http clients you should be using a factory to do that, 
 because it manages connection safety etc. you don't end up with connection exhaustion etc.
 
