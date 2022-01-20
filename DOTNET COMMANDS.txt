@@ -11,3 +11,17 @@ dotnet add package [package_name]
 *** NOTE:
 If there are multiple project running on same session in vs code, vs code intellisense does not work.
 Solution: open project seperately in vs code
+
+
+--
+
+Creating platform from PlatformService was OK but informing CommandService about it was NOT OK!
+Error: "The remote certificate is invalid because of errors in the certificate chain: UntrustedRoot"
+
+So I did this (in CommandService): 
+
+dotnet dev-certs https --clean (Clean certificates)
+dotnet dev-certs https	       (Add certificate for CommandService localhost)	
+dotnet dev-certs https --trust (Trust certificate which is you create)	
+
+more info: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-3.0&tabs=visual-studio#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos

@@ -66,3 +66,9 @@ ii) we wrote a method (SendPlatformToCommand) to send platforms which is we crea
 iii) we used PlatformReadDto as an argument for SendPlatformToCommand, because we possibly need an id within CommandService.
 iv) we used http client for to send our platforms to CommandService, we set up constructor depepndency injection (HttpCommandDataClient & Startup)
 v) we put the uri for CommandService to config file so PlatformService is able to know where the CommandService sits
+
+make use of http client within PlatformService:CreatePlatform
+
+!!! 
+within terminal when we run the project we can see      
+'Hosting environment: Development' line. This means project uses appsettings.Development.json file
