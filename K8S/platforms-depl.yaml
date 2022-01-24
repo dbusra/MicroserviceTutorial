@@ -16,5 +16,22 @@ spec:
       containers:
         - name: platformservice # - : for specifying array
           image: bbb3/platformservice:latest
+          
+  # deployment for a container into a pod.  
+--- # seperate the deployment from cluster ip config
+apiVersion: v1
+kind: Service
+metadata:
+  name: platforms-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: platformservice
+  ports:
+  - name: platformservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
 
-# deployment for a container into a pod.
+
+
