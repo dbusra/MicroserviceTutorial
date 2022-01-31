@@ -1,35 +1,34 @@
-# white space sensitive!
 # deployment for a container into a pod.  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platforms-depl
+  name: commands-depl
 spec:
   replicas: 1 # (horizontally) number of 'platform service'
   selector: # selecting template that we create
     matchLabels:
-      app: platformservice
+      app: commandservice
   template: # defining pod and container that we are going to use 'what we are deploying'
     metadata:
       labels:
-        app: platformservice
+        app: commandservice
     spec:
       containers:
-        - name: platformservice # - : for specifying array
-          image: bbb3/platformservice:latest
+        - name: commandservice # - : for specifying array
+          image: bbb3/commandservice:latest
           
 
 --- # seperate the deployment from cluster ip config
 apiVersion: v1
 kind: Service
 metadata:
-  name: platforms-clusterip-srv
+  name: commands-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: platformservice
+    app: commandservice
   ports:
-  - name: platformservice
+  - name: commandservice
     protocol: TCP
     port: 80
     targetPort: 80
