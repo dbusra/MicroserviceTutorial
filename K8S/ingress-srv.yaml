@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: acme.com # host shoul not be localhost or an ip address instead it should be a proper domain name later we'll update our localhost file to reflect acme.com 'redirects localhost to acme.com'
+    - host: acme.com # host should not be localhost or an ip address instead it should be a proper domain name later we'll update our localhost file to reflect acme.com 'redirects localhost to acme.com'
       http:
         paths:
           - path: /api/platforms

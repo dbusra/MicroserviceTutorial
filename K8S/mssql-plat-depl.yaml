@@ -1,0 +1,71 @@
+# mssql-platform-deployment.yaml --> mssql is dedicated to platform service
+# defining sql server on kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: mssql
+          image: mcr.microsoft.com/mssql/server:2017-latest # sql server is running on linux 
+          ports:
+            - containerPort: 1443 # default port for mssql
+          env:
+          - name: MSSQL_PID
+            value: "Express"
+          - name: ACCEPT_EULA
+            value: "Y" # Y (yes) accept microsoft agreement
+          - name: SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mssql
+                key: SA_PASSWORD
+          volumeMounts:
+          - mountPath: /var/opt/mssql/data # path for where the database lives (path is linux based)
+            name: mssqldb
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: mssql-claim
+# create cluster-ip address , for to make sure sql server can talk everything else within the cluster
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: mssql
+  ports:
+  - name: mssql
+    protocol: TCP
+    port: 1443
+    targetPort: 1443
+# to be able to access directly mssql-server from desktop we create another service called load balancer 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: mssql
+  ports:
+  - protocol: TCP
+    port: 1443
+    targetPort: 1443
+
+      
+
+
