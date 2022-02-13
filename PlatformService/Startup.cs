@@ -37,19 +37,19 @@ namespace PlatformService
         public void ConfigureServices(IServiceCollection services)
         {
             //!dependency injection
-            // if(_environment.IsProduction())
-            // {
+            if(_environment.IsProduction())
+            {
                 Console.WriteLine("--> Using SqlServer Db");
                 services.AddDbContext<AppDbContext>(opt =>
                     opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConnection")));
 
-            // }
-            // else
-            // {
-            //     Console.WriteLine("--> Using InMem Db");
-            //     services.AddDbContext<AppDbContext>(opt =>
-            //         opt.UseInMemoryDatabase("InMem")); // InMem: name of database. 'random'
-            // }
+            }
+            else
+            {
+                Console.WriteLine("--> Using InMem Db");
+                services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseInMemoryDatabase("InMem")); // InMem: name of database. 'random'
+            }
             services.AddScoped<IPlatformRepository, PlatformRepository>(); // if somebody 'asks' IPlatformRepository we'll give them 'PlatformRepository', concrete class
 
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
@@ -87,7 +87,7 @@ namespace PlatformService
 
             // we pass IApplicationBuilder to PreparePopulation method in order for us to be able use AppDbContext,
             // we pass AppDbContext through IApplicationBuilder
-            // PrepareDb.PreparePopulation(app,env.IsProduction()); 
+            PrepareDb.PreparePopulation(app,env.IsProduction()); 
         }
     }
 }
