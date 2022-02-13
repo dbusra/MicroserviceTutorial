@@ -19,20 +19,37 @@ namespace PlatformService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfiguration Configuration { get; }
+        private readonly IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration,IWebHostEnvironment environment)
         {
             Configuration = configuration;
+
+            /*  order to determine what environment we are running in, we need to inject something called 'hosting environment' into Startup 
+                and get access the environment that way
+                IConfiguration, IWebHostEnvironment are injected into classes and are available to us*/
+            _environment = environment;
         }
 
-        public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //!dependency injection
-            services.AddDbContext<AppDbContext>(opt =>
-                opt.UseInMemoryDatabase("InMem")); // InMem: name of database. 'random'
+            if(_environment.IsProduction())
+            {
+                Console.WriteLine("--> Using SqlServer Db");
+                services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConnection")));
 
+            }
+            else
+            {
+                Console.WriteLine("--> Using InMem Db");
+                services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseInMemoryDatabase("InMem")); // InMem: name of database. 'random'
+            }
             services.AddScoped<IPlatformRepository, PlatformRepository>(); // if somebody 'asks' IPlatformRepository we'll give them 'PlatformRepository', concrete class
 
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
