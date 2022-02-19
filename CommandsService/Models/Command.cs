@@ -16,6 +16,7 @@ namespace CommandsService.Models
 
         [Required]
         public int PlatformId { get; set; } // foreign key for platform id within platform db
-        public Platform Platform { get; set; }
+        public Platform Platform { get; set; } // this property is called 'navigation property' "Navigation property: A property defined on the principal and/or dependent entity that references the related entity."
+
     }
 }

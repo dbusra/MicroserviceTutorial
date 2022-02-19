@@ -14,7 +14,7 @@ namespace CommandsService.Models
         
         [Required]
         public string Name { get; set; }
-        public ICollection<Command> Commands { get; set; } = new List<Command>();
+        public ICollection<Command> Commands { get; set; } = new List<Command>(); // this property is called 'collection navigation property'
 
     }
 }
